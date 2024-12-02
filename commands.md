@@ -1,1 +1,1 @@
-npm i @nestjs/swagger
+npm i @nestjs/swagger class-transformer class-validator
