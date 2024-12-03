@@ -3,6 +3,7 @@ CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -13,10 +14,10 @@ CREATE TABLE "User" (
 CREATE TABLE "Address" (
     "id" SERIAL NOT NULL,
     "name" TEXT NOT NULL,
-    "location" geometry(Point, 4326) NOT NULL,
     "userId" INTEGER NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
+    "location" geometry(Point, 4326) NOT NULL,
 
     CONSTRAINT "Address_pkey" PRIMARY KEY ("id")
 );

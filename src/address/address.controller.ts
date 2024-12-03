@@ -12,31 +12,32 @@ export class AddressController {
 
   @Post()
   @ApiCreatedResponse({ type: AddressEntity })
-  create(@Body() createAddressDto: CreateAddressDto) {
-    return this.addressService.create(createAddressDto)
+  async create(@Body() createAddressDto: CreateAddressDto) {
+    return new AddressEntity(await this.addressService.create(createAddressDto))
   }
 
   @Get()
   @ApiOkResponse({ type: AddressEntity, isArray: true })
-  findAll() {
-    return this.addressService.findAll()
+  async findAll() {
+    const addresses = await this.addressService.findAll()
+    return addresses.map((address) => new AddressEntity(address))
   }
 
   @Get(':id')
   @ApiOkResponse({ type: AddressEntity })
-  findOne(@Param('id', ParseIntPipe) id: number) {
-    return this.addressService.findOne(id)
+  async findOne(@Param('id', ParseIntPipe) id: number) {
+    return new AddressEntity(await this.addressService.findOne(id))
   }
 
   @Patch(':id')
   @ApiCreatedResponse({ type: AddressEntity })
-  update(@Param('id', ParseIntPipe) id: number, @Body() updateAddressDto: UpdateAddressDto) {
-    return this.addressService.update(id, updateAddressDto)
+  async update(@Param('id', ParseIntPipe) id: number, @Body() updateAddressDto: UpdateAddressDto) {
+    return new AddressEntity(await this.addressService.update(id, updateAddressDto))
   }
 
   @Delete(':id')
   @ApiOkResponse({ type: AddressEntity })
-  remove(@Param('id', ParseIntPipe) id: number) {
-    return this.addressService.remove(id)
+  async remove(@Param('id', ParseIntPipe) id: number) {
+    return new AddressEntity(await this.addressService.remove(id))
   }
 }
