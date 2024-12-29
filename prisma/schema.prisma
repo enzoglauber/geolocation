@@ -37,3 +37,5 @@ model Address {
   // the index for that column
   @@index([location], name: "location_idx", type: Gist)
 }
+
+//https://github.com/gowrav-vishwakarma/nirbhaya-server/blob/ea23cc1f1aca5a6bde44b3947e4168f9f28c112c/src/models/EventLog.ts#L39
